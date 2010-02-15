@@ -32,16 +32,16 @@ public class HsqlDBHandlerTest {
 	@Test
 	public void testStartServer() {
 		dbHandler.startServer();
-		Assert.assertTrue(dbHandler.isServerRunning());
+		Assert.assertTrue(dbHandler.isRunning());
 		Assert.assertFalse(isPortAvailable(9001));
 	}
 
 	@Test
 	public void testStopServer() {
 		dbHandler.startServer();
-		Assert.assertTrue(dbHandler.isServerRunning());
+		Assert.assertTrue(dbHandler.isRunning());
 		dbHandler.stopServer();
-		Assert.assertFalse(dbHandler.isServerRunning());
+		Assert.assertFalse(dbHandler.isRunning());
 
 	}
 

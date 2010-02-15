@@ -40,11 +40,11 @@ public class HsqlDBHandler implements DBHandler {
 		} catch (AclFormatException e) {
 			e.printStackTrace();
 		}
-		if (!isServerRunning())
+		if (!isRunning())
 			server.start();
 	}
 	@Override
-	public boolean isServerRunning() {
+	public boolean isRunning() {
 		try {
 			server.checkRunning(true);
 			return true;
@@ -55,10 +55,12 @@ public class HsqlDBHandler implements DBHandler {
 	
 	@Override
 	public void stopServer() {
-		if (isServerRunning())
+		if (isRunning())
 			server.stop();
 	}
 
-
+	public static void main(String[] args) {
+		new HsqlDBHandler().startServer();
+	}
 
 }

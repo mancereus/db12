@@ -1,24 +1,27 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<entity-mappings xmlns="http://java.sun.com/xml/ns/persistence/orm" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://java.sun.com/xml/ns/persistence/orm orm_1_0.xsd" version="1.0">
-    <package>
-        datamodel
-    </package>^
-    <access>
-        PROPERTY
-    </access>
-    <entity class="Person">
-        <table schema="MYAPPLICATION" name="PEOPLETABLE"/>
-        <attributes>
-            <id name="id">
-                <column name="ID"/>
-            </id>
-            <basic name="lastName">
-                <column name="LASTNAME"/>
-            </basic>
-            <basic name="firstName">
-                <column name="MYFIRST"/>
-            </basic>
-            <transient name="nonsenseField" />
-        </attributes>
-    </entity>
+<entity-mappings xmlns="http://java.sun.com/xml/ns/persistence/orm"
+	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	xmlns:add="http://xsd.db12.de/orm_extension"
+	xsi:schemaLocation="http://java.sun.com/xml/ns/persistence/orm orm2.0
+	http://xsd.db12.de/orm_extension add"
+	version="2.0"
+	>
+	<package>de.db12.entity</package>
+    
+	<access>FIELD</access>
+	<entity class="Game" >
+		<attributes>
+			<id name="id">
+				<column name="GAMID" />
+			</id>
+			<basic name="name">
+			
+				<column name="GAMNAME"/>
+			</basic>
+			<basic name="published" >
+				<column name="PUBLISHED" />
+			</basic>
+		</attributes>
+	</entity>
+	
 </entity-mappings>
