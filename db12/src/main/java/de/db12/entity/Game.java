@@ -13,6 +13,7 @@ import javax.persistence.SequenceGenerator;
 
 @Entity
 public class Game {
+
 	public enum WinCategory {
 		cardgame, race, conflict, economy
 	}
@@ -44,6 +45,11 @@ public class Game {
 
 	public int getId() {
 		return id;
+	}
+	@Override
+	public String toString() {
+		return "Game [id=" + id + ", name=" + name + ", themeType=" + themeType
+				+ ", winTypes=" + winTypes + "]";
 	}
 
 }

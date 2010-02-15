@@ -14,15 +14,18 @@ import de.db12.database.DBHandler;
 
 public class HsqlDBHandler implements DBHandler {
 
+	private static final String DB12 = "db12";
 	private Server server;
 	private HsqlProperties hsqlprops;
 
 	public HsqlDBHandler() {
 		HsqlProperties p = new HsqlProperties();
-		File dbdir = new File("c:/dev/db/hsqldb");
+		File dbdir = new File("c:/dev/db/hsqldb/");
 		dbdir.mkdirs();
-		p.setProperty("server.database.0","file:" + dbdir);
-		p.setProperty("server.dbname.0","db12");
+		p.setProperty("server.database.0","file:" + dbdir + "/" + DB12);
+		p.setProperty("server.dbname.0",DB12);
+		p.setProperty("server.database.1","mem:" +DB12);
+		p.setProperty("server.dbname.1",DB12 + "mem");
 		this.hsqlprops = p;
 	}
 
