@@ -1,0 +1,27 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<entity-mappings xmlns="http://java.sun.com/xml/ns/persistence/orm"
+	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	xmlns:add="http://xsd.db12.de/orm_extension"
+	xsi:schemaLocation="http://java.sun.com/xml/ns/persistence/orm orm2.0
+	http://xsd.db12.de/orm_extension add"
+	version="2.0"
+	>
+	<package>de.db12.entity</package>
+    
+	<access>FIELD</access>
+	<entity class="Game" >
+		<attributes>
+			<id name="id">
+				<column name="GAMID" />
+			</id>
+			<basic name="name">
+			
+				<column name="GAMNAME"/>
+			</basic>
+			<basic name="published" >
+				<column name="PUBLISHED" />
+			</basic>
+		</attributes>
+	</entity>
+	
+</entity-mappings>

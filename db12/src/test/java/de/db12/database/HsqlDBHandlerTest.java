@@ -10,6 +10,8 @@ import org.junit.After;
 import org.junit.Before;
 import org.junit.Test;
 
+import de.db12.database.handler.HsqlDBHandler;
+
 public class HsqlDBHandlerTest {
 
 	private HsqlDBHandler dbHandler;

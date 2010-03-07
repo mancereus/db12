@@ -3,8 +3,6 @@ package de.db12.entity;
 import static org.junit.Assert.assertTrue;
 
 import javax.persistence.EntityManager;
-import javax.persistence.EntityManagerFactory;
-import javax.persistence.Persistence;
 import javax.persistence.Query;
 
 import org.junit.AfterClass;
@@ -14,16 +12,14 @@ import org.junit.Test;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
-import de.db12.database.DBHandler;
-import de.db12.database.DBHandlerFactory;
-import de.db12.database.HsqlDBHandler;
-import de.db12.database.DBHandler.dbtype;
-import de.db12.entity.Game;
+import de.db12.database.EMFactory;
+import de.db12.database.handler.DBHandler;
+import de.db12.database.handler.DBHandlerFactory;
+import de.db12.database.handler.DBHandler.DBType;
 
 public class JpaTest {
 	private final static Logger log = LoggerFactory.getLogger(JpaTest.class);
-	private static final dbtype PERSISTENCE_UNIT_NAME = DBHandler.dbtype.hsql;
-	private EntityManagerFactory factory;
+	private static final DBType PERSISTENCE_UNIT_NAME = DBHandler.DBType.hsql;
 	private static DBHandler handler = DBHandlerFactory
 			.getHandler(PERSISTENCE_UNIT_NAME);
 
@@ -39,9 +35,7 @@ public class JpaTest {
 
 	@Before
 	public void setUp() throws Exception {
-		factory = Persistence.createEntityManagerFactory(PERSISTENCE_UNIT_NAME
-				.name());
-		EntityManager em = factory.createEntityManager();
+		EntityManager em = EMFactory.getEntityManager(PERSISTENCE_UNIT_NAME);
 
 		// Begin a new local transaction so that we can persist a new entity
 		em.getTransaction().begin();
@@ -70,7 +64,7 @@ public class JpaTest {
 
 		// Now lets check the database and see if the created entries are there
 		// Create a fresh, new EntityManager
-		EntityManager em = factory.createEntityManager();
+		EntityManager em = EMFactory.getEntityManager(PERSISTENCE_UNIT_NAME);
 
 		// Perform a simple query for all the Message entities
 		Query q = em.createQuery("select m from Game m");
@@ -84,10 +78,9 @@ public class JpaTest {
 
 	@Test(expected = javax.persistence.NoResultException.class)
 	public void deletePerson() {
-		log.info("create em");
-		EntityManager em = factory.createEntityManager();
+		EntityManager em = EMFactory.getEntityManager(PERSISTENCE_UNIT_NAME);
+
 		// Begin a new local transaction so that we can persist a new entity
-		log.info("ta begin");
 		em.getTransaction().begin();
 		Query q = em
 				.createQuery("SELECT p FROM Game p WHERE p.name = :firstName");
