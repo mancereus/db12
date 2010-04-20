@@ -7,9 +7,19 @@
 	<classpathentry kind="lib" path="lib/driver/hsqldb.jar"/>
 	<classpathentry kind="lib" path="lib/driver/derby.jar"/>
 	<classpathentry kind="lib" path="lib/jpa/eclipselink.jar"/>
-	<classpathentry kind="lib" path="lib/javax.persistence_2.0.0.v200911271158.jar"/>
 	<classpathentry kind="lib" path="lib/di/aopalliance.jar"/>
 	<classpathentry kind="lib" path="lib/di/guice-2.0.jar"/>
+	<classpathentry kind="lib" path="lib/javax.persistence_2.0.0.jar"/>
+	<classpathentry kind="lib" path="lib/log/slf4j-api-1.5.10.jar"/>
+	<classpathentry kind="lib" path="lib/log/slf4j-simple-1.5.10.jar"/>
+	<classpathentry kind="lib" path="lib/google-collect-1.0.jar"/>
+	<classpathentry kind="lib" path="lib/gwt/gwt-dispatch.jar"/>
+	<classpathentry kind="lib" path="lib/gwt/gwt-log-3.0.0.jar"/>
+	<classpathentry kind="lib" path="lib/gwt/gwt-presenter.jar"/>
+	<classpathentry kind="lib" path="lib/gwt/gin-1.0.jar"/>
+	<classpathentry kind="lib" path="lib/gwt/guice-servlet-2.0.jar"/>
 	<classpathentry kind="con" path="org.eclipse.jdt.junit.JUNIT_CONTAINER/4"/>
-	<classpathentry kind="output" path="bin"/>
+	<classpathentry kind="con" path="org.eclipse.jst.j2ee.internal.module.container"/>
+	<classpathentry kind="con" path="com.google.gwt.eclipse.core.GWT_CONTAINER"/>
+	<classpathentry kind="output" path="war/WEB-INF/classes"/>
 </classpath>
