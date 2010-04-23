@@ -23,7 +23,7 @@ public class ChessIt implements EntryPoint {
 
 	private void onModuleLoad2() {
 		BoardLayout p = new BoardLayout();
-		p.setName("test");
+//		p.setName("test");
 		RootLayoutPanel.get().add(p);
 //		DockLayoutPanel p = new DockLayoutPanel(Unit.EM);
 //		Label header = new Label("ChessIt");

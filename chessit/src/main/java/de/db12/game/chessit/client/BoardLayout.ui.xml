@@ -12,23 +12,30 @@
       	text-align: center;
       	vertical-align: middle;
     }
+    .hand { 
+    	background-color: gray; 
+      	color: black;
+      	font-size: 16pt;
+      	text-align: center;
+      	vertical-align: middle;
+    }
   </ui:style>
 
   <g:DockLayoutPanel unit='EM'>
-  <g:north size='5'>
-    <g:Label styleName='{style.title}' ui:field="label">Top</g:Label>
+  <g:east size='20'>
+    <g:Label styleName='{style.title}' >Help</g:Label>
+  </g:east>
+  <g:north size='2'>
+    <g:Label styleName='{style.title}' ui:field="label">ChessIt</g:Label>
   </g:north>
-  <g:west size='10'>
-    <g:HTML>
-      <ul>
-        <li>Sidebar</li>
-        <li>Sidebar</li>
-        <li>Sidebar</li>
-      </ul>
-    </g:HTML>
-  </g:west>
+  <g:north size='10'>
+    <g:Label styleName='{style.hand}'>White</g:Label>
+  </g:north>
+  <g:south size='10'>
+    <g:Label styleName='{style.hand}'>Black</g:Label>
+  </g:south>
   <g:center>
-    <g:Label>Body</g:Label>
+    <g:AbsolutePanel ui:field="board"></g:AbsolutePanel>
   </g:center>
 </g:DockLayoutPanel>
 </ui:UiBinder>

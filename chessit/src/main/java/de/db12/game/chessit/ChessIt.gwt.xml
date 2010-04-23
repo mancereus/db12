@@ -9,7 +9,9 @@
 	<!-- For development a default of `DEBUG` is recommended -->
 	<inherits name="com.allen_sauer.gwt.log.gwt-log-OFF" />
 
-
+	<!-- Inherit gwt-dnd support                   -->
+    <inherits name='com.allen_sauer.gwt.dnd.gwt-dnd'/>
+        
 	<!-- Other module inherits                                      -->
 
 	<!-- Specify the app entry point class.                         -->
