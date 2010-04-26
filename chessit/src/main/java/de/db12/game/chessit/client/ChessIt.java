@@ -2,13 +2,11 @@ package de.db12.game.chessit.client;
 
 import com.allen_sauer.gwt.log.client.Log;
 import com.google.gwt.core.client.EntryPoint;
-import com.google.gwt.dom.client.Style.Unit;
+import com.google.gwt.event.shared.HandlerManager;
 import com.google.gwt.user.client.Command;
 import com.google.gwt.user.client.DeferredCommand;
-import com.google.gwt.user.client.ui.DockLayoutPanel;
-import com.google.gwt.user.client.ui.HTML;
-import com.google.gwt.user.client.ui.Label;
 import com.google.gwt.user.client.ui.RootLayoutPanel;
+import com.google.gwt.user.client.ui.RootPanel;
 
 public class ChessIt implements EntryPoint {
 	public void onModuleLoad() {
@@ -22,9 +20,11 @@ public class ChessIt implements EntryPoint {
 	}
 
 	private void onModuleLoad2() {
-		BoardLayout p = new BoardLayout();
+		BoardLayout p = new BoardLayout(100);
 //		p.setName("test");
-		RootLayoutPanel.get().add(p);
+		HandlerManager eventBus = new HandlerManager(null);
+	    AppController appViewer = new AppController(eventBus);
+	    appViewer.go(RootLayoutPanel.get());
 //		DockLayoutPanel p = new DockLayoutPanel(Unit.EM);
 //		Label header = new Label("ChessIt");
 //		header.setStyleName("");

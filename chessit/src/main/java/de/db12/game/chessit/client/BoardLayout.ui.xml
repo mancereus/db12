@@ -1,41 +1,46 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<!-- HelloWorld.ui.xml -->
+	<!-- HelloWorld.ui.xml -->
 
 <ui:UiBinder xmlns:ui='urn:ui:com.google.gwt.uibinder'
 	xmlns:g='urn:import:com.google.gwt.user.client.ui'>
-	
- <ui:style>
-    .title { 
-    	background-color: Skyblue; 
-      	color: black;
-      	font-size: 16pt;
-      	text-align: center;
-      	vertical-align: middle;
-    }
-    .hand { 
-    	background-color: gray; 
-      	color: black;
-      	font-size: 16pt;
-      	text-align: center;
-      	vertical-align: middle;
-    }
-  </ui:style>
 
-  <g:DockLayoutPanel unit='EM'>
-  <g:east size='20'>
-    <g:Label styleName='{style.title}' >Help</g:Label>
-  </g:east>
-  <g:north size='2'>
-    <g:Label styleName='{style.title}' ui:field="label">ChessIt</g:Label>
-  </g:north>
-  <g:north size='10'>
-    <g:Label styleName='{style.hand}'>White</g:Label>
-  </g:north>
-  <g:south size='10'>
-    <g:Label styleName='{style.hand}'>Black</g:Label>
-  </g:south>
-  <g:center>
-    <g:AbsolutePanel ui:field="board"></g:AbsolutePanel>
-  </g:center>
-</g:DockLayoutPanel>
+	<ui:style>
+		.title {
+			background-color: Skyblue;
+			color: black;
+			font-size: 16pt;
+			text-align: center;
+			vertical-align: middle;
+		}
+		
+		.hand {
+			background-color: gray;
+			color: black;
+			font-size: 16pt;
+			text-align: center;
+			vertical-align: middle;
+		}
+	</ui:style>
+
+	<g:DockLayoutPanel unit='EM'>
+		<g:north size='2'>
+			<g:Label styleName='{style.title}'>ChessIt</g:Label>
+		</g:north>
+		<g:west size='20'>
+			<g:DockLayoutPanel unit='EM'>
+				<g:north size='10'>
+					<g:Label styleName='{style.hand}'>White</g:Label>
+				</g:north>
+				<g:north size='10'>
+					<g:Label styleName='{style.hand}'>Black</g:Label>
+				</g:north>
+				<g:north size='20'>
+					<g:Label styleName='{style.title}' ui:field="label">Help</g:Label>
+				</g:north>
+			</g:DockLayoutPanel>
+		</g:west>
+		<g:center>
+			<g:AbsolutePanel ui:field="board"></g:AbsolutePanel>
+		</g:center>
+	</g:DockLayoutPanel>
 </ui:UiBinder>
