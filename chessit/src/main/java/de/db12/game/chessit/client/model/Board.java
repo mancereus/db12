@@ -9,6 +9,8 @@ public class Board {
 	}
 	
 	public void addStone(int x, int y, Stone stone) {
+		if (fields[x][y] == null)
+			fields[x][y] = new Field();
 		fields[x][y].add(stone);
 	}
 }

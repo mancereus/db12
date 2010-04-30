@@ -1,8 +1,8 @@
 package de.db12.game.chessit.client.model;
 
-import java.util.ArrayList;
-import java.util.Collections;
-import java.util.List;
+
+
+import com.google.gwt.user.client.Random;
 
 import de.db12.game.chessit.client.model.Stone.Type;
 
@@ -25,7 +25,7 @@ public class BoardModel {
 		getBHand().add(new Stone(Type.bpawn));
 		getBHand().add(new Stone(Type.bpawn));
 		getBHand().add(new Stone(Type.bpawn));
-		Collections.shuffle(getBHand());
+		shuffle(getBHand());
 		getWHand().add(new Stone(Type.wknight));
 		getWHand().add(new Stone(Type.wknight));
 		getWHand().add(new Stone(Type.wrook));
@@ -36,7 +36,7 @@ public class BoardModel {
 		getWHand().add(new Stone(Type.wpawn));
 		getWHand().add(new Stone(Type.wpawn));
 		getWHand().add(new Stone(Type.wpawn));
-		Collections.shuffle(getWHand());
+		shuffle(getWHand());
 
 		this.board = new Board(size);
 		int middlex = size/2;
@@ -50,6 +50,23 @@ public class BoardModel {
 		getBoard().addStone(middlex-1, middley +1, new Stone(Type.wpawn));
 		getBoard().addStone(middlex, middley +1, new Stone(Type.wpawn));
 		getBoard().addStone(middlex+1, middley +1, new Stone(Type.wpawn));
+	}
+
+	private void shuffle(Hand hand) {
+		for (int i = 0; i < hand.size(); i++) {
+			int pos = Random.nextInt(hand.size());
+			int posTo = Random.nextInt(hand.size());
+			swap(hand,pos, posTo);
+			
+		}
+		
+	}
+
+	private void swap(Hand hand, int pos, int posTo) {
+		Stone tmp = hand.get(pos);
+		hand.set(pos, hand.get(posTo));
+		hand.set(posTo, tmp);
+		
 	}
 
 	public Board getBoard() {
