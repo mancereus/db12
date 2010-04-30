@@ -1,6 +1,7 @@
 package de.db12.game.chessit.client.model;
 
 import java.util.ArrayList;
+import java.util.Collections;
 import java.util.List;
 
 import de.db12.game.chessit.client.model.Stone.Type;
@@ -8,8 +9,10 @@ import de.db12.game.chessit.client.model.Stone.Type;
 public class BoardModel {
 
 	private Board board;
-	private List<Stone> bHand = new ArrayList<Stone>();
-	private List<Stone> wHand = new ArrayList<Stone>();
+	private Hand bHand = new Hand();
+	private Hand wHand = new Hand();
+	private Drop bDrop = new Drop();
+	private Drop wDrop = new Drop();
 
 	public BoardModel(int size) {
 		getBHand().add(new Stone(Type.bknight));
@@ -22,7 +25,7 @@ public class BoardModel {
 		getBHand().add(new Stone(Type.bpawn));
 		getBHand().add(new Stone(Type.bpawn));
 		getBHand().add(new Stone(Type.bpawn));
-
+		Collections.shuffle(getBHand());
 		getWHand().add(new Stone(Type.wknight));
 		getWHand().add(new Stone(Type.wknight));
 		getWHand().add(new Stone(Type.wrook));
@@ -33,8 +36,9 @@ public class BoardModel {
 		getWHand().add(new Stone(Type.wpawn));
 		getWHand().add(new Stone(Type.wpawn));
 		getWHand().add(new Stone(Type.wpawn));
+		Collections.shuffle(getWHand());
 
-		setBoard(new Board(size));
+		this.board = new Board(size);
 		int middlex = size/2;
 		int middley = size/2;
 		getBoard().addStone(middlex, middley -2, new Stone(Type.bking));
@@ -48,21 +52,24 @@ public class BoardModel {
 		getBoard().addStone(middlex+1, middley +1, new Stone(Type.wpawn));
 	}
 
-	public void setBoard(Board board) {
-		this.board = board;
-	}
-
 	public Board getBoard() {
 		return board;
 	}
 
-	public List<Stone> getBHand() {
+	public Hand getBHand() {
 		return bHand;
 	}
 
-
-	public List<Stone> getWHand() {
+	public Hand getWHand() {
 		return wHand;
+	}
+
+	public Drop getbDrop() {
+		return bDrop;
+	}
+
+	public Drop getwDrop() {
+		return wDrop;
 	}
 	
 	

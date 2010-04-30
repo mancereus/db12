@@ -1,18 +1,14 @@
 package de.db12.game.chessit.client.model;
 
-import java.util.List;
 
 public class Board {
-	Stone[][] fields;
-	List<Stone> stones;
+	Field[][] fields;
 	
 	public Board(int size) {
-		fields = new Stone[size][size];
+		fields = new Field[size][size];
 	}
 	
 	public void addStone(int x, int y, Stone stone) {
-		fields[x][y] = stone;
-		stones.add(stone);
-		stone.setPos(x,y);
+		fields[x][y].add(stone);
 	}
 }

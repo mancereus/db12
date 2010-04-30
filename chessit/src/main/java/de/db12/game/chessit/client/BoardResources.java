@@ -24,40 +24,40 @@ public interface BoardResources extends ClientBundle {
 //  @Source("manual.pdf")
 //  public DataResource ownersManual();
   
-	@Source("images/big/bauer_black.png")
+	@Source("images/bauer_black.png")
 	ImageResource bpawn();
 
-	@Source("images/big/bauer_white.png")
+	@Source("images/bauer_white.png")
 	ImageResource wpawn();
 
-	@Source("images/big/dame_black.png")
+	@Source("images/dame_black.png")
 	ImageResource dame_black();
 
-	@Source("images/big/dame_white.png")
+	@Source("images/dame_white.png")
 	ImageResource dame_white();
 
-	@Source("images/big/koenig_black.png")
+	@Source("images/koenig_black.png")
 	ImageResource bking();
 
-	@Source("images/big/koenig_white.png")
+	@Source("images/koenig_white.png")
 	ImageResource wking();
 
-	@Source("images/big/laeufer_black.png")
+	@Source("images/laeufer_black.png")
 	ImageResource bbishop();
 
-	@Source("images/big/laeufer_white.png")
+	@Source("images/laeufer_white.png")
 	ImageResource wbishop();
 
-	@Source("images/big/springer_black.png")
+	@Source("images/springer_black.png")
 	ImageResource springer_black();
 
-	@Source("images/big/springer_white.png")
+	@Source("images/springer_white.png")
 	ImageResource springer_white();
 
-	@Source("images/big/turm_black.png")
+	@Source("images/turm_black.png")
 	ImageResource brook();
 
-	@Source("images/big/turm_white.png")
+	@Source("images/turm_white.png")
 	ImageResource wrook();
 
 }

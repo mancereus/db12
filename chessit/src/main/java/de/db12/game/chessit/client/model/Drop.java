@@ -1,14 +1,17 @@
 package de.db12.game.chessit.client.model;
 
-public class Field implements Place {
-	private Stone stone;
+import java.util.HashSet;
 
-	public Field() {
+
+public class Drop extends HashSet<Stone> implements Place {
+	private static final long serialVersionUID = 1L;
+
+	public Drop() {
 	}
 
 	@Override
 	public boolean add(Stone stone) {
-		this.stone = stone;
+		super.add(stone);
 		stone.movePlace(this);
 		return true;
 
@@ -16,7 +19,7 @@ public class Field implements Place {
 
 	@Override
 	public void remove(Stone stone) {
-		this.stone = null;
+		super.remove(stone);
 
 	}
 }
