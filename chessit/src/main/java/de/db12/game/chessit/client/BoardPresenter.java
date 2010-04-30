@@ -9,6 +9,7 @@ import com.google.gwt.user.client.ui.HasWidgets;
 import com.google.gwt.user.client.ui.Widget;
 
 import de.db12.game.chessit.client.model.BoardModel;
+import de.db12.game.chessit.client.model.Stone;
 
 public class BoardPresenter implements Presenter {
 	  public interface Display extends HasValue<List<String>> {
@@ -32,4 +33,12 @@ public class BoardPresenter implements Presenter {
 		container.add(new BoardLayout(60));
 		
 	}
+	
+	public void addStone(int x, int y, Stone stone) {
+		model.getBoard().addStone(x, y, stone);
+		model.getBHand().remove(stone);
+		model.getWHand().remove(stone);
+	}
+	
+	
 }
