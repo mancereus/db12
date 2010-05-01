@@ -5,15 +5,15 @@ import com.google.gwt.user.client.ui.RootLayoutPanel;
 
 public class AppController {
 
-	private HandlerManager eventbus;
+    private final HandlerManager eventbus;
 
-	public AppController(HandlerManager eventBus) {
-		this.eventbus = eventBus;
-	}
+    public AppController(HandlerManager eventBus) {
+        this.eventbus = eventBus;
+    }
 
-	public void go(RootLayoutPanel container) {
-		new BoardPresenter().go(container);
-		
-	}
+    public void go(RootLayoutPanel container) {
+        new BoardPresenter(eventbus).go(container);
+
+    }
 
 }

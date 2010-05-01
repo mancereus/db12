@@ -13,6 +13,8 @@ public interface BoardResources extends ClientBundle {
 
     interface BoardCss extends CssResource {
         String enterBG();
+
+        String border();
     }
 
     // @Source("config.xml")

@@ -6,6 +6,7 @@ import com.allen_sauer.gwt.dnd.client.PickupDragController;
 import com.allen_sauer.gwt.dnd.client.drop.GridConstrainedDropController;
 import com.google.gwt.core.client.GWT;
 import com.google.gwt.event.logical.shared.ValueChangeHandler;
+import com.google.gwt.event.shared.HandlerManager;
 import com.google.gwt.event.shared.HandlerRegistration;
 import com.google.gwt.resources.client.ImageResource;
 import com.google.gwt.uibinder.client.UiBinder;
@@ -45,9 +46,11 @@ public class BoardLayout extends Composite implements Display {
     private final int size;
 
     PickupDragController dragController = null;
+    private final HandlerManager eventbus;
 
-    public BoardLayout(int pxsize) {
+    public BoardLayout(int pxsize, HandlerManager eventbus) {
         this.size = pxsize;
+        this.eventbus = eventbus;
         initWidget(uiBinder.createAndBindUi(this));
         initGame();
     }
@@ -57,7 +60,7 @@ public class BoardLayout extends Composite implements Display {
         int height = boardview.getOffsetHeight();
         int width = boardview.getOffsetWidth();
         // int size = Math.min(height, width) / 8;
-        GridConstrainedDropController dropController = new BoardDropController(boardview, size, size);
+        GridConstrainedDropController dropController = new BoardDropController(boardview, eventbus, size, size);
         dragController.registerDropController(dropController);
 
     }
