@@ -29,18 +29,24 @@
 		<g:west size='20'>
 			<g:DockLayoutPanel unit='EM'>
 				<g:north size='10'>
-					<g:Label styleName='{style.hand}'>White</g:Label>
+					<g:HTMLPanel styleName='{style.hand}'  ui:field="whand">White</g:HTMLPanel>
 				</g:north>
 				<g:north size='10'>
-					<g:Label styleName='{style.hand}'>Black</g:Label>
+					<g:HTMLPanel styleName='{style.hand}'  ui:field="bhand">Black</g:HTMLPanel>
 				</g:north>
 				<g:north size='20'>
-					<g:Label styleName='{style.title}' ui:field="label">Help</g:Label>
+					<g:HTMLPanel styleName='{style.hand}'  ui:field="help">Help</g:HTMLPanel>
 				</g:north>
+				<g:south size='10'>
+					<g:HTMLPanel styleName='{style.hand}'  ui:field="wdrop">White Drop</g:HTMLPanel>
+				</g:south>
+				<g:south size='10'>
+					<g:HTMLPanel styleName='{style.hand}'  ui:field="bdrop">Black Drop</g:HTMLPanel>
+				</g:south>
 			</g:DockLayoutPanel>
 		</g:west>
 		<g:center>
-			<g:AbsolutePanel ui:field="board"></g:AbsolutePanel>
+			<g:AbsolutePanel ui:field="boardview"></g:AbsolutePanel>
 		</g:center>
 	</g:DockLayoutPanel>
 </ui:UiBinder>
