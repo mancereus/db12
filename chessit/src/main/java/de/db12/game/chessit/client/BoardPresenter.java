@@ -41,6 +41,7 @@ public class BoardPresenter implements Presenter, MoveStoneEventHandler {
     }
 
     private void refreshView() {
+        view.clearBoard();
         view.showBoard(model.getBoard());
 
     }
@@ -58,6 +59,6 @@ public class BoardPresenter implements Presenter, MoveStoneEventHandler {
     @Override
     public void onStoneMoved(MoveStoneEvent event) {
         moveStone(event.getStone(), event.getTarget());
-
+        refreshView();
     }
 }

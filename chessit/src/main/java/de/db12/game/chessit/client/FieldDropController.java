@@ -1,19 +1,18 @@
 package de.db12.game.chessit.client;
 
 import com.allen_sauer.gwt.dnd.client.DragContext;
-import com.allen_sauer.gwt.dnd.client.drop.GridConstrainedDropController;
+import com.allen_sauer.gwt.dnd.client.drop.SimpleDropController;
 import com.google.gwt.event.shared.HandlerManager;
-import com.google.gwt.user.client.ui.AbsolutePanel;
 
 import de.db12.game.chessit.client.event.MoveStoneEvent;
 
-public class BoardDropController extends GridConstrainedDropController {
+public class FieldDropController extends SimpleDropController {
     private static BoardResources res = BoardResources.INSTANCE;
     private StoneView image;
     private final HandlerManager eventbus;
 
-    public BoardDropController(AbsolutePanel dropTarget, HandlerManager eventbus, int gridX, int gridY) {
-        super(dropTarget, gridX, gridY);
+    public FieldDropController(HandlerManager eventbus, StoneView field) {
+        super(field);
         this.eventbus = eventbus;
 
     }

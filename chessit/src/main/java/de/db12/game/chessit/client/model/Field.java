@@ -13,6 +13,8 @@ public class Field implements Place {
 
     @Override
     public boolean add(Stone stone) {
+        if (stone == null)
+            return false;
         this.stone = stone;
         stone.movePlace(this);
         return true;

@@ -8,21 +8,18 @@ import com.google.gwt.core.client.GWT;
 import com.google.gwt.event.logical.shared.ValueChangeHandler;
 import com.google.gwt.event.shared.HandlerManager;
 import com.google.gwt.event.shared.HandlerRegistration;
-import com.google.gwt.resources.client.ImageResource;
 import com.google.gwt.uibinder.client.UiBinder;
 import com.google.gwt.uibinder.client.UiField;
 import com.google.gwt.user.client.ui.AbsolutePanel;
 import com.google.gwt.user.client.ui.Composite;
 import com.google.gwt.user.client.ui.DockLayoutPanel;
 import com.google.gwt.user.client.ui.HasWidgets;
-import com.google.gwt.user.client.ui.Image;
 import com.google.gwt.user.client.ui.Label;
 import com.google.gwt.user.client.ui.Panel;
 
 import de.db12.game.chessit.client.BoardPresenter.Display;
 import de.db12.game.chessit.client.model.Board;
 import de.db12.game.chessit.client.model.Field;
-import de.db12.game.chessit.client.model.Stone;
 
 public class BoardLayout extends Composite implements Display {
     interface MyUiBinder extends UiBinder<DockLayoutPanel, BoardLayout> {
@@ -119,47 +116,17 @@ public class BoardLayout extends Composite implements Display {
 
     public void showBoard(Board board) {
         for (Field field : board.getFields()) {
-            ImageResource img = getImageResource(field.getStone());
-            Image stone = new Image();
-            stone.setResource(img);
+            StoneView stone = new StoneView(field);
             boardview
                     .add(stone, size * (field.getX() - board.getXOffset()), size * (field.getY() - board.getYOffset()));
+            dragController.registerDropController(new FieldDropController(eventbus, stone));
             dragController.makeDraggable(stone);
         }
 
     }
 
-    ImageResource getImageResource(Stone stone) {
-        switch (stone.getType()) {
-        case bbishop:
-            return res.bbishop();
-        case bking:
-            return res.bking();
-        case bqueen:
-            return res.bqueen();
-        case bpawn:
-            return res.bpawn();
-        case brook:
-            return res.brook();
-        case bknight:
-            return res.bknight();
-        case wbishop:
-            return res.wbishop();
-        case wking:
-            return res.wking();
-        case wqueen:
-            return res.wqueen();
-        case wpawn:
-            return res.wpawn();
-        case wrook:
-            return res.wrook();
-        case wknight:
-            return res.wknight();
-        case empty:
-            return res.empty();
-        default:
-            break;
-        }
-        return null;
+    public void clearBoard() {
+        boardview.clear();
     }
+
 }
