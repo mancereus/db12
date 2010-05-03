@@ -3,7 +3,7 @@ package de.db12.game.chessit.client;
 import com.google.gwt.core.client.GWT;
 import com.google.gwt.resources.client.ClientBundle;
 import com.google.gwt.resources.client.CssResource;
-import com.google.gwt.resources.client.ImageResource;
+import com.google.gwt.resources.client.DataResource;
 
 public interface BoardResources extends ClientBundle {
     public static final BoardResources INSTANCE = GWT.create(BoardResources.class);
@@ -24,42 +24,42 @@ public interface BoardResources extends ClientBundle {
     // public DataResource ownersManual();
 
     @Source("images/bauer_black.png")
-    ImageResource bpawn();
+    DataResource bpawn();
 
     @Source("images/bauer_white.png")
-    ImageResource wpawn();
+    DataResource wpawn();
 
     @Source("images/dame_black.png")
-    ImageResource bqueen();
+    DataResource bqueen();
 
     @Source("images/dame_white.png")
-    ImageResource wqueen();
+    DataResource wqueen();
 
     @Source("images/koenig_black.png")
-    ImageResource bking();
+    DataResource bking();
 
     @Source("images/koenig_white.png")
-    ImageResource wking();
+    DataResource wking();
 
     @Source("images/laeufer_black.png")
-    ImageResource bbishop();
+    DataResource bbishop();
 
     @Source("images/laeufer_white.png")
-    ImageResource wbishop();
+    DataResource wbishop();
 
     @Source("images/springer_black.png")
-    ImageResource bknight();
+    DataResource bknight();
 
     @Source("images/springer_white.png")
-    ImageResource wknight();
+    DataResource wknight();
 
     @Source("images/turm_black.png")
-    ImageResource brook();
+    DataResource brook();
 
     @Source("images/turm_white.png")
-    ImageResource wrook();
+    DataResource wrook();
 
     @Source("images/empty.png")
-    ImageResource empty();
+    DataResource empty();
 
 }

@@ -119,7 +119,7 @@ public class BoardLayout extends Composite implements Display {
             StoneView stone = new StoneView(field);
             boardview
                     .add(stone, size * (field.getX() - board.getXOffset()), size * (field.getY() - board.getYOffset()));
-            dragController.registerDropController(new FieldDropController(eventbus, stone));
+            //dragController.registerDropController(new FieldDropController(eventbus, stone));
             dragController.makeDraggable(stone);
         }
 
