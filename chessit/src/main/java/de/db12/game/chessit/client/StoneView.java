@@ -11,10 +11,14 @@ public class StoneView extends Image {
 
     private static BoardResources res = GWT.create(BoardResources.class);
     private final Field field;
+    private final int pxsize;
 
-    public StoneView(Field field) {
+    public StoneView(Field field, int pxsize) {
         super(getDataResource(field.getStone()).getUrl());
+        setWidth(pxsize + "px");
+        setHeight(pxsize + "px");
         this.field = field;
+        this.pxsize = pxsize;
     }
 
     public static DataResource getDataResource(Stone stone) {

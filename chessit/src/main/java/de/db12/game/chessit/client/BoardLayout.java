@@ -54,9 +54,6 @@ public class BoardLayout extends Composite implements Display {
 
     private void initGame() {
         dragController = new PickupDragController(boardview, false);
-        int height = boardview.getOffsetHeight();
-        int width = boardview.getOffsetWidth();
-        // int size = Math.min(height, width) / 8;
         GridConstrainedDropController dropController = new BoardDropController(boardview, eventbus, size, size);
         dragController.registerDropController(dropController);
 
@@ -115,11 +112,17 @@ public class BoardLayout extends Composite implements Display {
     }
 
     public void showBoard(Board board) {
+        // int height = boardview.getOffsetHeight();
+        // int width = boardview.getOffsetWidth();
+        // int pxsize = Math.max(Math.min(height, width) / 8, 30);
+        int pxsize = 120;
+
         for (Field field : board.getFields()) {
-            StoneView stone = new StoneView(field);
-            boardview
-                    .add(stone, size * (field.getX() - board.getXOffset()), size * (field.getY() - board.getYOffset()));
-            //dragController.registerDropController(new FieldDropController(eventbus, stone));
+            StoneView stone = new StoneView(field, pxsize);
+            boardview.add(stone, pxsize * (field.getX() - board.getXOffset()), pxsize
+                    * (field.getY() - board.getYOffset()));
+            // dragController.registerDropController(new
+            // FieldDropController(eventbus, stone));
             dragController.makeDraggable(stone);
         }
 

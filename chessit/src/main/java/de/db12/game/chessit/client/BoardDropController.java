@@ -5,8 +5,6 @@ import com.allen_sauer.gwt.dnd.client.drop.GridConstrainedDropController;
 import com.google.gwt.event.shared.HandlerManager;
 import com.google.gwt.user.client.ui.AbsolutePanel;
 
-import de.db12.game.chessit.client.event.MoveStoneEvent;
-
 public class BoardDropController extends GridConstrainedDropController {
     private static BoardResources res = BoardResources.INSTANCE;
     private StoneView image;
@@ -27,7 +25,8 @@ public class BoardDropController extends GridConstrainedDropController {
     @Override
     public void onDrop(DragContext context) {
         super.onDrop(context);
-        eventbus.fireEvent(new MoveStoneEvent(((StoneView) this.getDropTarget()).getField(), image.getField()
-                .getStone()));
+        // eventbus.fireEvent(new MoveStoneEvent(((StoneView)
+        // this.getDropTarget()).getField(), image.getField()
+        // .getStone()));
     }
 }
