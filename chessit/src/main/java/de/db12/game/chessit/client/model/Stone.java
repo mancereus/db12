@@ -6,11 +6,6 @@ public class Stone {
     }
 
     private final Type type;
-    private Place place;
-
-    public Place getPlace() {
-        return place;
-    }
 
     public Stone(Type type) {
         this.type = type;
@@ -18,11 +13,5 @@ public class Stone {
 
     public Type getType() {
         return type;
-    }
-
-    void movePlace(Place newplace) {
-        if (place != null)
-            place.remove(this);
-        this.place = newplace;
     }
 }

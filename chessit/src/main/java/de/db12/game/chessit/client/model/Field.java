@@ -16,7 +16,6 @@ public class Field implements Place {
         if (stone == null)
             return false;
         this.stone = stone;
-        stone.movePlace(this);
         return true;
 
     }

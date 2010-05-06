@@ -12,7 +12,6 @@ public class Drop extends HashSet<Stone> implements Place {
 	@Override
 	public boolean add(Stone stone) {
 		super.add(stone);
-		stone.movePlace(this);
 		return true;
 
 	}

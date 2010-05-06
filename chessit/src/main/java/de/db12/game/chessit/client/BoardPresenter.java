@@ -52,13 +52,13 @@ public class BoardPresenter implements Presenter, MoveStoneEventHandler {
 
     }
 
-    public void moveStone(Stone stone, Place place) {
-        model.moveStone(stone, place);
+    public void moveStone(Place origin, Stone stone, Place place) {
+        model.moveStone(origin, stone, place);
     }
 
     @Override
     public void onStoneMoved(MoveStoneEvent event) {
-        moveStone(event.getStone(), event.getTarget());
+        moveStone(event.getOrigin(), event.getStone(), event.getTarget());
         refreshView();
     }
 }

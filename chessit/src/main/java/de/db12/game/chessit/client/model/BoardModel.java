@@ -87,8 +87,9 @@ public class BoardModel {
         return wDrop;
     }
 
-    public void moveStone(Stone stone, Place place) {
-        place.add(stone);
+    public void moveStone(Place origin, Stone stone, Place target) {
+    	origin.remove(stone);
+        target.add(stone);
 
     }
 
