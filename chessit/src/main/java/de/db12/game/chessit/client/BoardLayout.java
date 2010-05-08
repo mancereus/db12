@@ -2,8 +2,6 @@ package de.db12.game.chessit.client;
 
 import java.util.List;
 
-import com.allen_sauer.gwt.dnd.client.PickupDragController;
-import com.allen_sauer.gwt.dnd.client.drop.GridConstrainedDropController;
 import com.google.gwt.core.client.GWT;
 import com.google.gwt.event.logical.shared.ValueChangeHandler;
 import com.google.gwt.event.shared.HandlerManager;
@@ -15,11 +13,8 @@ import com.google.gwt.user.client.ui.Composite;
 import com.google.gwt.user.client.ui.DockLayoutPanel;
 import com.google.gwt.user.client.ui.HasWidgets;
 import com.google.gwt.user.client.ui.Label;
-import com.google.gwt.user.client.ui.Panel;
 
 import de.db12.game.chessit.client.BoardPresenter.Display;
-import de.db12.game.chessit.client.model.Board;
-import de.db12.game.chessit.client.model.Field;
 
 public class BoardLayout extends Composite implements Display {
     interface MyUiBinder extends UiBinder<DockLayoutPanel, BoardLayout> {
@@ -39,24 +34,15 @@ public class BoardLayout extends Composite implements Display {
     @UiField
     HasWidgets bdrop;
     @UiField
-    AbsolutePanel boardview;
+    AbsolutePanel table;
     private final int size;
 
-    PickupDragController dragController = null;
     private final HandlerManager eventbus;
 
     public BoardLayout(int pxsize, HandlerManager eventbus) {
         this.size = pxsize;
         this.eventbus = eventbus;
         initWidget(uiBinder.createAndBindUi(this));
-        initGame();
-    }
-
-    private void initGame() {
-        dragController = new PickupDragController(boardview, false);
-//        GridConstrainedDropController dropController = new BoardDropController(boardview, eventbus, size, size);
-//        dragController.registerDropController(dropController);
-
     }
 
     public void setHelp(String name) {
@@ -74,8 +60,13 @@ public class BoardLayout extends Composite implements Display {
     }
 
     @Override
-    public Panel getBoard() {
-        return boardview;
+    public AbsolutePanel getTable() {
+        return table;
+    }
+
+    @Override
+    public AbsolutePanel getBoard() {
+        return table;
     }
 
     @Override
@@ -109,28 +100,6 @@ public class BoardLayout extends Composite implements Display {
 
     @Override
     public void setValue(List<String> value, boolean fireEvents) {
-    }
-
-    public void showBoard(Board board) {
-        // int height = boardview.getOffsetHeight();
-        // int width = boardview.getOffsetWidth();
-        // int pxsize = Math.max(Math.min(height, width) / 8, 30);
-        int pxsize = 120;
-
-        for (Field field : board.getFields()) {
-            StoneView stone = new StoneView(field, pxsize);
-            boardview.add(stone, pxsize * (field.getX() - board.getXOffset()), pxsize
-                    * (field.getY() - board.getYOffset()));
-             dragController.registerDropController(new
-             FieldDropController(eventbus, stone));
-            dragController.makeDraggable(stone);
-        }
-
-    }
-
-    public void clearBoard() {
-    	dragController.unregisterDropControllers();
-        boardview.clear();
     }
 
 }

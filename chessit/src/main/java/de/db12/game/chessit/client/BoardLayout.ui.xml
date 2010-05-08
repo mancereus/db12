@@ -21,7 +21,6 @@
 			vertical-align: middle;
 		}
 	</ui:style>
-
 	<g:DockLayoutPanel unit='EM'>
 		<g:north size='2'>
 			<g:Label styleName='{style.title}'>ChessIt</g:Label>
@@ -46,7 +45,8 @@
 			</g:DockLayoutPanel>
 		</g:west>
 		<g:center>
-			<g:AbsolutePanel ui:field="boardview"></g:AbsolutePanel>
+			<g:AbsolutePanel ui:field="table">
+			</g:AbsolutePanel>
 		</g:center>
 	</g:DockLayoutPanel>
 </ui:UiBinder>
