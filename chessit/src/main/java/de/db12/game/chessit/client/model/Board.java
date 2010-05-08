@@ -18,6 +18,11 @@ public class Board {
         Field target = fields.get(x * size + y);
         if (target == null || target.getStone().getType() == Type.empty)
             fields.put(x * size + y, new Field(x, y, stone));
+        checkNeighbours(x, y);
+
+    }
+
+    private void checkNeighbours(int x, int y) {
         checkEmpty(x - 1, y - 1);
         checkEmpty(x - 1, y);
         checkEmpty(x - 1, y + 1);
@@ -26,7 +31,6 @@ public class Board {
         checkEmpty(x + 1, y - 1);
         checkEmpty(x + 1, y);
         checkEmpty(x + 1, y + 1);
-
     }
 
     private void checkEmpty(int x, int y) {

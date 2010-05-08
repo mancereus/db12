@@ -28,10 +28,10 @@
 		<g:west size='20'>
 			<g:DockLayoutPanel unit='EM'>
 				<g:north size='10'>
-					<g:HTMLPanel styleName='{style.hand}'  ui:field="whand">White</g:HTMLPanel>
+					<g:FlowPanel styleName='{style.hand}' ui:field="whand"></g:FlowPanel>
 				</g:north>
 				<g:north size='10'>
-					<g:HTMLPanel styleName='{style.hand}'  ui:field="bhand">Black</g:HTMLPanel>
+					<g:FlowPanel styleName='{style.hand}' ui:field="bhand"></g:FlowPanel>
 				</g:north>
 				<g:north size='20'>
 					<g:HTMLPanel styleName='{style.hand}'  ui:field="help">Help</g:HTMLPanel>

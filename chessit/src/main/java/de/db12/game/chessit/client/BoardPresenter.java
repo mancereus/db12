@@ -12,6 +12,7 @@ import de.db12.game.chessit.client.event.MoveStoneEvent;
 import de.db12.game.chessit.client.event.MoveStoneEventHandler;
 import de.db12.game.chessit.client.model.BoardModel;
 import de.db12.game.chessit.client.model.Field;
+import de.db12.game.chessit.client.model.InPlace;
 import de.db12.game.chessit.client.model.Place;
 import de.db12.game.chessit.client.model.Stone;
 
@@ -45,6 +46,20 @@ public class BoardPresenter implements Presenter, MoveStoneEventHandler {
         refreshView();
         eventbus.addHandler(MoveStoneEvent.getType(), this);
 
+        view.getWhiteHand().clear();
+        for (int i = 0; i < Math.min(model.getWHand().size(), 3); i++) {
+            StoneView stoneview = new StoneView(new InPlace(i, model.getWHand().get(i)), 50);
+            model.getWHand().remove(i);
+            view.getWhiteHand().add(stoneview);
+            dragController.makeDraggable(stoneview);
+        }
+        view.getBlackHand().clear();
+        for (int i = 0; i < Math.min(model.getBHand().size(), 3); i++) {
+            StoneView stoneview = new StoneView(new InPlace(i, model.getBHand().get(i)), 50);
+            model.getBHand().remove(i);
+            view.getBlackHand().add(stoneview);
+            dragController.makeDraggable(stoneview);
+        }
     }
 
     private void refreshView() {

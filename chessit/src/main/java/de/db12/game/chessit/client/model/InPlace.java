@@ -1,17 +1,15 @@
 package de.db12.game.chessit.client.model;
 
-public class Field implements Place {
+public class InPlace implements Place {
     private Stone stone;
-    private int xpos;
-    private int ypos;
+    private int pos;
 
-    public Field(int x, int y, Stone stone) {
-        this.xpos = x;
-        this.ypos = y;
+    public InPlace(int pos, Stone stone) {
+        this.pos = pos;
         this.stone = stone;
     }
 
-    public Field(Stone stone) {
+    public InPlace(Stone stone) {
         this.stone = stone;
     }
 
@@ -35,12 +33,8 @@ public class Field implements Place {
 
     }
 
-    public int getY() {
-        return ypos;
-    }
-
-    public int getX() {
-        return xpos;
+    public int getPos() {
+        return pos;
     }
 
 }

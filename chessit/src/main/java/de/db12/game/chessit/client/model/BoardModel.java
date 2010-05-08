@@ -1,5 +1,8 @@
 package de.db12.game.chessit.client.model;
 
+import java.util.ArrayList;
+import java.util.List;
+
 import com.google.gwt.user.client.Random;
 
 import de.db12.game.chessit.client.model.Stone.Type;
@@ -7,10 +10,10 @@ import de.db12.game.chessit.client.model.Stone.Type;
 public class BoardModel {
 
     private final Board board;
-    private final Hand bHand = new Hand();
-    private final Hand wHand = new Hand();
-    private final Drop bDrop = new Drop();
-    private final Drop wDrop = new Drop();
+    private final List<Stone> wDrop = new ArrayList<Stone>();
+    private final List<Stone> bDrop = new ArrayList<Stone>();
+    private final List<Stone> bHand = new ArrayList<Stone>();
+    private final List<Stone> wHand = new ArrayList<Stone>();
 
     public BoardModel(int size) {
         getBHand().add(new Stone(Type.bknight));
@@ -50,7 +53,7 @@ public class BoardModel {
         getBoard().addStone(middlex + 1, middley + 2, new Stone(Type.wpawn));
     }
 
-    private void shuffle(Hand hand) {
+    private void shuffle(List<Stone> hand) {
         for (int i = 0; i < hand.size(); i++) {
             int pos = Random.nextInt(hand.size());
             int posTo = Random.nextInt(hand.size());
@@ -60,7 +63,7 @@ public class BoardModel {
 
     }
 
-    private void swap(Hand hand, int pos, int posTo) {
+    private void swap(List<Stone> hand, int pos, int posTo) {
         Stone tmp = hand.get(pos);
         hand.set(pos, hand.get(posTo));
         hand.set(posTo, tmp);
@@ -71,26 +74,30 @@ public class BoardModel {
         return board;
     }
 
-    public Hand getBHand() {
+    public List<Stone> getBHand() {
         return bHand;
     }
 
-    public Hand getWHand() {
+    public List<Stone> getWHand() {
         return wHand;
     }
 
-    public Drop getbDrop() {
+    public List<Stone> getbDrop() {
         return bDrop;
     }
 
-    public Drop getwDrop() {
+    public List<Stone> getwDrop() {
         return wDrop;
     }
 
     public void moveStone(Place origin, Stone stone, Place target) {
-    	origin.remove(stone);
+        checkEmpties(origin);
+        origin.remove(stone);
         target.add(stone);
 
     }
 
+    private void checkEmpties(Place origin) {
+
+    }
 }

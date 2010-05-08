@@ -4,21 +4,19 @@ import com.google.gwt.core.client.GWT;
 import com.google.gwt.resources.client.DataResource;
 import com.google.gwt.user.client.ui.Image;
 
-import de.db12.game.chessit.client.model.Field;
+import de.db12.game.chessit.client.model.Place;
 import de.db12.game.chessit.client.model.Stone;
 
 public class StoneView extends Image {
 
     private static BoardResources res = GWT.create(BoardResources.class);
-    private final Field field;
-    private final int pxsize;
+    private final Place field;
 
-    public StoneView(Field field, int pxsize) {
-        super(getDataResource(field.getStone()).getUrl());
+    public StoneView(Place place, int pxsize) {
+        super(getDataResource(place.getStone()).getUrl());
         setWidth(pxsize + "px");
         setHeight(pxsize + "px");
-        this.field = field;
-        this.pxsize = pxsize;
+        this.field = place;
     }
 
     public static DataResource getDataResource(Stone stone) {
@@ -57,7 +55,7 @@ public class StoneView extends Image {
         return null;
     }
 
-    public Field getField() {
+    public Place getPlace() {
         return field;
     }
 }
