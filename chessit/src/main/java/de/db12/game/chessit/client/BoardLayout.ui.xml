@@ -37,10 +37,10 @@
 					<g:FlowPanel styleName='{style.hand}'  ui:field="help"></g:FlowPanel>
 				</g:north>
 				<g:south size='10'>
-					<g:HTMLPanel styleName='{style.hand}'  ui:field="wdrop">White Drop</g:HTMLPanel>
+					<g:FlowPanel styleName='{style.hand}'  ui:field="wdrop"></g:FlowPanel>
 				</g:south>
 				<g:south size='10'>
-					<g:HTMLPanel styleName='{style.hand}'  ui:field="bdrop">Black Drop</g:HTMLPanel>
+					<g:FlowPanel styleName='{style.hand}'  ui:field="bdrop"></g:FlowPanel>
 				</g:south>
 			</g:DockLayoutPanel>
 		</g:west>

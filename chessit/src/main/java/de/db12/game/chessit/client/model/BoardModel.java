@@ -5,6 +5,8 @@ import java.util.List;
 
 import com.google.gwt.user.client.Random;
 
+import de.db12.game.chessit.client.BoardPresenter.Player;
+import de.db12.game.chessit.client.BoardPresenter.State;
 import de.db12.game.chessit.client.model.Stone.Type;
 
 public class BoardModel {
@@ -15,42 +17,44 @@ public class BoardModel {
     private final List<Stone> bHand = new ArrayList<Stone>();
     private final List<Stone> wHand = new ArrayList<Stone>();
 
+    private State state = State.blackset;
+
     public BoardModel(int size) {
-        getBHand().add(new Stone(Type.bknight));
-        getBHand().add(new Stone(Type.bknight));
-        getBHand().add(new Stone(Type.brook));
-        getBHand().add(new Stone(Type.brook));
-        getBHand().add(new Stone(Type.bbishop));
-        getBHand().add(new Stone(Type.bbishop));
-        getBHand().add(new Stone(Type.bqueen));
-        getBHand().add(new Stone(Type.bpawn));
-        getBHand().add(new Stone(Type.bpawn));
-        getBHand().add(new Stone(Type.bpawn));
+        getBHand().add(new Stone(Type.bknight, Player.black));
+        getBHand().add(new Stone(Type.bknight, Player.black));
+        getBHand().add(new Stone(Type.brook, Player.black));
+        getBHand().add(new Stone(Type.brook, Player.black));
+        getBHand().add(new Stone(Type.bbishop, Player.black));
+        getBHand().add(new Stone(Type.bbishop, Player.black));
+        getBHand().add(new Stone(Type.bqueen, Player.black));
+        getBHand().add(new Stone(Type.bpawn, Player.black));
+        getBHand().add(new Stone(Type.bpawn, Player.black));
+        getBHand().add(new Stone(Type.bpawn, Player.black));
         shuffle(getBHand());
-        getWHand().add(new Stone(Type.wknight));
-        getWHand().add(new Stone(Type.wknight));
-        getWHand().add(new Stone(Type.wrook));
-        getWHand().add(new Stone(Type.wrook));
-        getWHand().add(new Stone(Type.wbishop));
-        getWHand().add(new Stone(Type.wbishop));
-        getWHand().add(new Stone(Type.wqueen));
-        getWHand().add(new Stone(Type.wpawn));
-        getWHand().add(new Stone(Type.wpawn));
-        getWHand().add(new Stone(Type.wpawn));
+        getWHand().add(new Stone(Type.wknight, Player.white));
+        getWHand().add(new Stone(Type.wknight, Player.white));
+        getWHand().add(new Stone(Type.wrook, Player.white));
+        getWHand().add(new Stone(Type.wrook, Player.white));
+        getWHand().add(new Stone(Type.wbishop, Player.white));
+        getWHand().add(new Stone(Type.wbishop, Player.white));
+        getWHand().add(new Stone(Type.wqueen, Player.white));
+        getWHand().add(new Stone(Type.wpawn, Player.white));
+        getWHand().add(new Stone(Type.wpawn, Player.white));
+        getWHand().add(new Stone(Type.wpawn, Player.white));
         shuffle(getWHand());
 
         this.board = new Board(size);
         int middlex = size / 2;
         int middley = size / 2;
-        getBoard().addStone(middlex, middley - 2, new Stone(Type.bking));
-        getBoard().addStone(middlex - 1, middley - 1, new Stone(Type.bpawn));
-        getBoard().addStone(middlex, middley - 1, new Stone(Type.bpawn));
-        getBoard().addStone(middlex + 1, middley - 1, new Stone(Type.bpawn));
+        getBoard().addStone(middlex, middley - 2, new Stone(Type.bking, Player.black));
+        getBoard().addStone(middlex - 1, middley - 1, new Stone(Type.bpawn, Player.black));
+        getBoard().addStone(middlex, middley - 1, new Stone(Type.bpawn, Player.black));
+        getBoard().addStone(middlex + 1, middley - 1, new Stone(Type.bpawn, Player.black));
 
-        getBoard().addStone(middlex, middley + 3, new Stone(Type.wking));
-        getBoard().addStone(middlex - 1, middley + 2, new Stone(Type.wpawn));
-        getBoard().addStone(middlex, middley + 2, new Stone(Type.wpawn));
-        getBoard().addStone(middlex + 1, middley + 2, new Stone(Type.wpawn));
+        getBoard().addStone(middlex, middley + 3, new Stone(Type.wking, Player.white));
+        getBoard().addStone(middlex - 1, middley + 2, new Stone(Type.wpawn, Player.white));
+        getBoard().addStone(middlex, middley + 2, new Stone(Type.wpawn, Player.white));
+        getBoard().addStone(middlex + 1, middley + 2, new Stone(Type.wpawn, Player.white));
     }
 
     private void shuffle(List<Stone> hand) {
@@ -93,8 +97,23 @@ public class BoardModel {
     public void moveStone(Place origin, Stone stone, Place target) {
         checkEmpties(origin);
         origin.remove(stone);
+        Stone targetstone = target.getStone();
+        if (targetstone != null) {
+            if (targetstone.getPlayer() == Player.white)
+                getwDrop().add(targetstone);
+            if (targetstone.getPlayer() == Player.black)
+                getbDrop().add(targetstone);
+        }
         target.add(stone);
 
+    }
+
+    public void nextState() {
+        state = state.next();
+    }
+
+    public State getState() {
+        return state;
     }
 
     private void checkEmpties(Place origin) {

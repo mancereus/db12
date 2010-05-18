@@ -8,6 +8,7 @@ import java.util.List;
 import java.util.Map;
 import java.util.Map.Entry;
 
+import de.db12.game.chessit.client.BoardPresenter.Player;
 import de.db12.game.chessit.client.model.Stone.Type;
 
 public class Board {
@@ -39,7 +40,7 @@ public class Board {
 
     private void checkEmpty(int x, int y) {
         if (fields.get(x * size + y) == null)
-            fields.put(x * size + y, new Field(x, y, new Stone(Type.empty)));
+            fields.put(x * size + y, new Field(x, y, new Stone(Type.empty, Player.none)));
     }
 
     public int getXOffset() {
@@ -61,19 +62,19 @@ public class Board {
     }
 
     public Collection<Field> getFields() {
-    	Iterator<Entry<Integer, Field>> iter = fields.entrySet().iterator();
-    	while (iter.hasNext()) {
-    		Entry<Integer, Field> entry = iter.next();
-			if (entry.getValue().getStone() == null || entry.getValue().getStone().getType() == Type.empty)
-				iter.remove();
-		}
-    	List<Integer> empties = new ArrayList<Integer>();
-    	for (Map.Entry<Integer,Field> entry : fields.entrySet()) {
-			empties.add(entry.getKey());
-		}
-    	for (Integer key : empties) {
-			checkNeighbours(key / size, key % size);
-		}
+        Iterator<Entry<Integer, Field>> iter = fields.entrySet().iterator();
+        while (iter.hasNext()) {
+            Entry<Integer, Field> entry = iter.next();
+            if (entry.getValue().getStone() == null || entry.getValue().getStone().getType() == Type.empty)
+                iter.remove();
+        }
+        List<Integer> empties = new ArrayList<Integer>();
+        for (Map.Entry<Integer, Field> entry : fields.entrySet()) {
+            empties.add(entry.getKey());
+        }
+        for (Integer key : empties) {
+            checkNeighbours(key / size, key % size);
+        }
         return fields.values();
     }
 }

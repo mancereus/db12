@@ -16,6 +16,7 @@ public class StoneView extends Image {
         super(getDataResource(place.getStone()).getUrl());
         setWidth(pxsize + "px");
         setHeight(pxsize + "px");
+        setStyleName(res.style().border());
         this.field = place;
     }
 
