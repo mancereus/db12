@@ -34,7 +34,7 @@
 					<g:FlowPanel styleName='{style.hand}' ui:field="bhand"></g:FlowPanel>
 				</g:north>
 				<g:north size='20'>
-					<g:HTMLPanel styleName='{style.hand}'  ui:field="help">Help</g:HTMLPanel>
+					<g:FlowPanel styleName='{style.hand}'  ui:field="help"></g:FlowPanel>
 				</g:north>
 				<g:south size='10'>
 					<g:HTMLPanel styleName='{style.hand}'  ui:field="wdrop">White Drop</g:HTMLPanel>

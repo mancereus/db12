@@ -7,6 +7,7 @@ import com.google.gwt.event.shared.HandlerManager;
 import com.google.gwt.user.client.ui.AbsolutePanel;
 import com.google.gwt.user.client.ui.HasValue;
 import com.google.gwt.user.client.ui.HasWidgets;
+import com.google.gwt.user.client.ui.Label;
 
 import de.db12.game.chessit.client.event.MoveStoneEvent;
 import de.db12.game.chessit.client.event.MoveStoneEventHandler;
@@ -15,6 +16,7 @@ import de.db12.game.chessit.client.model.Field;
 import de.db12.game.chessit.client.model.InPlace;
 import de.db12.game.chessit.client.model.Place;
 import de.db12.game.chessit.client.model.Stone;
+import de.db12.game.chessit.client.model.Stone.Type;
 
 public class BoardPresenter implements Presenter, MoveStoneEventHandler {
     public interface Display extends HasValue<List<String>> {
@@ -73,13 +75,24 @@ public class BoardPresenter implements Presenter, MoveStoneEventHandler {
         // int width = boardview.getOffsetWidth();
         // int pxsize = Math.max(Math.min(height, width) / 8, 30);
         int pxsize = 120;
-
+        BoardSize bsize = new BoardSize();
+        for (Field field : model.getBoard().getFields()) {
+            int xpos = field.getX() - model.getBoard().getXOffset();
+			int ypos = field.getY() - model.getBoard().getYOffset();
+			bsize.updateX(xpos);
+			bsize.updateY(ypos);
+        }
+        pxsize = 700/bsize.getMaxSize();
+        view.getHelp().add(new Label("" + bsize.getMaxSize()));
         for (Field field : model.getBoard().getFields()) {
             StoneView stone = new StoneView(field, pxsize);
-            view.getBoard().add(stone, 20 + pxsize * (field.getX() - model.getBoard().getXOffset()),
-                    pxsize * (field.getY() - model.getBoard().getYOffset()));
+            int xpos = field.getX() - model.getBoard().getXOffset();
+			int ypos = field.getY() - model.getBoard().getYOffset();
+			view.getBoard().add(stone, 20 + pxsize * xpos,
+                    pxsize * ypos);
             dragController.registerDropController(new FieldDropController(eventbus, stone));
-            dragController.makeDraggable(stone);
+            if (field.getStone().getType() != Type.empty)
+            	dragController.makeDraggable(stone);
         }
 
     }
