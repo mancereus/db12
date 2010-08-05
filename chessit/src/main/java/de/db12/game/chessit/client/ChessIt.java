@@ -1,27 +1,17 @@
 package de.db12.game.chessit.client;
 
-import com.allen_sauer.gwt.log.client.Log;
 import com.google.gwt.core.client.EntryPoint;
-import com.google.gwt.event.shared.HandlerManager;
-import com.google.gwt.user.client.Command;
-import com.google.gwt.user.client.DeferredCommand;
-import com.google.gwt.user.client.ui.RootLayoutPanel;
+import com.google.gwt.core.client.GWT;
+import com.gwtplatform.mvp.client.DelayedBindRegistry;
 
 public class ChessIt implements EntryPoint {
-    public void onModuleLoad() {
-        Log.setUncaughtExceptionHandler();
+	
+	public final MyGinjector ginjector = GWT.create(MyGinjector.class);
 
-        DeferredCommand.addCommand(new Command() {
-            public void execute() {
-                onModuleLoad2();
-            }
-        });
-    }
+	public void onModuleLoad() {
 
-    private void onModuleLoad2() {
-        HandlerManager eventBus = new HandlerManager(null);
-        AppController appViewer = new AppController(eventBus);
-        appViewer.go(RootLayoutPanel.get());
-        Log.info("started");
-    }
+		DelayedBindRegistry.bind(ginjector);
+
+		ginjector.getPlaceManager().revealCurrentPlace();
+	}
 }

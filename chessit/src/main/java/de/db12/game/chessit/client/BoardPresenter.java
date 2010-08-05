@@ -1,16 +1,21 @@
 package de.db12.game.chessit.client;
 
-import java.util.List;
-
 import com.allen_sauer.gwt.dnd.client.PickupDragController;
 import com.google.gwt.event.dom.client.ClickEvent;
 import com.google.gwt.event.dom.client.ClickHandler;
 import com.google.gwt.event.shared.HandlerManager;
 import com.google.gwt.user.client.ui.AbsolutePanel;
 import com.google.gwt.user.client.ui.Button;
-import com.google.gwt.user.client.ui.HasValue;
 import com.google.gwt.user.client.ui.HasWidgets;
 import com.google.gwt.user.client.ui.Label;
+import com.google.inject.Inject;
+import com.gwtplatform.mvp.client.EventBus;
+import com.gwtplatform.mvp.client.PresenterImpl;
+import com.gwtplatform.mvp.client.View;
+import com.gwtplatform.mvp.client.annotations.NameToken;
+import com.gwtplatform.mvp.client.annotations.ProxyCodeSplit;
+import com.gwtplatform.mvp.client.proxy.ProxyPlace;
+import com.gwtplatform.mvp.client.proxy.RevealRootContentEvent;
 
 import de.db12.game.chessit.client.event.MoveStoneEvent;
 import de.db12.game.chessit.client.event.MoveStoneEventHandler;
@@ -20,7 +25,8 @@ import de.db12.game.chessit.client.model.InPlace;
 import de.db12.game.chessit.client.model.Place;
 import de.db12.game.chessit.client.model.Stone;
 
-public class BoardPresenter implements Presenter, MoveStoneEventHandler {
+public class BoardPresenter extends 
+PresenterImpl<BoardPresenter.MyView, BoardPresenter.MyProxy> implements MoveStoneEventHandler {
     public enum Player {
         white, black, none
     }
@@ -43,36 +49,49 @@ public class BoardPresenter implements Presenter, MoveStoneEventHandler {
         }
     }
 
-    public interface Display extends HasValue<List<String>> {
-        HasWidgets getWhiteHand();
+	  public interface MyView extends View {
+	        HasWidgets getWhiteHand();
 
-        HasWidgets getBlackHand();
+	        HasWidgets getBlackHand();
 
-        HasWidgets getWhiteDrop();
+	        HasWidgets getWhiteDrop();
 
-        HasWidgets getBlackDrop();
+	        HasWidgets getBlackDrop();
 
-        HasWidgets getHelp();
+	        HasWidgets getHelp();
 
-        AbsolutePanel getBoard();
+	        AbsolutePanel getBoard();
 
-        AbsolutePanel getTable();
-    }
+	        AbsolutePanel getTable();
+	  }
+
+	  @ProxyCodeSplit
+	  @NameToken(nameToken)
+	  public interface MyProxy extends ProxyPlace<BoardPresenter> {}
+
+
+	public static final String nameToken = "!main";
+	  
 
     BoardModel model;
     BoardLayout view;
-    private final HandlerManager eventbus;
+    private HandlerManager eventbus;
     PickupDragController dragController = null;
 
-    public BoardPresenter(HandlerManager eventbus) {
-        this.eventbus = eventbus;
+	  @Inject
+	  public BoardPresenter(EventBus eventBus, MyView view, MyProxy proxy) {
+	    super(eventBus, view, proxy);
         model = new BoardModel(30);
-        view = new BoardLayout(120, eventbus);
+        view = new BoardLayout();
         dragController = new PickupDragController(view.getBoard(), false);
         refreshView();
         eventbus.addHandler(MoveStoneEvent.getType(), this);
+	  }
 
-    }
+	  @Override
+	  protected void revealInParent() {
+	    RevealRootContentEvent.fire( eventBus, this );
+	  }
 
     private void refreshView() {
         clearBoard();
@@ -185,12 +204,6 @@ public class BoardPresenter implements Presenter, MoveStoneEventHandler {
     private void clearBoard() {
         dragController.unregisterDropControllers();
         view.getBoard().clear();
-    }
-
-    @Override
-    public void go(HasWidgets container) {
-        container.add(view);
-
     }
 
     public void moveStone(Place origin, Stone stone, Place place) {

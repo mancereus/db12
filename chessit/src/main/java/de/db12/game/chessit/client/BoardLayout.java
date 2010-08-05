@@ -1,22 +1,20 @@
 package de.db12.game.chessit.client;
 
-import java.util.List;
-
 import com.google.gwt.core.client.GWT;
-import com.google.gwt.event.logical.shared.ValueChangeHandler;
 import com.google.gwt.event.shared.HandlerManager;
-import com.google.gwt.event.shared.HandlerRegistration;
 import com.google.gwt.uibinder.client.UiBinder;
 import com.google.gwt.uibinder.client.UiField;
 import com.google.gwt.user.client.ui.AbsolutePanel;
-import com.google.gwt.user.client.ui.Composite;
 import com.google.gwt.user.client.ui.DockLayoutPanel;
 import com.google.gwt.user.client.ui.HasWidgets;
 import com.google.gwt.user.client.ui.Label;
+import com.google.gwt.user.client.ui.Widget;
+import com.google.inject.Inject;
+import com.gwtplatform.mvp.client.ViewImpl;
 
-import de.db12.game.chessit.client.BoardPresenter.Display;
+import de.db12.game.chessit.client.BoardPresenter.MyView;
 
-public class BoardLayout extends Composite implements Display {
+public class BoardLayout extends ViewImpl implements MyView {
     interface MyUiBinder extends UiBinder<DockLayoutPanel, BoardLayout> {
     }
 
@@ -35,14 +33,12 @@ public class BoardLayout extends Composite implements Display {
     HasWidgets bdrop;
     @UiField
     AbsolutePanel table;
-    private final int size;
 
-    private final HandlerManager eventbus;
+	private DockLayoutPanel panel;
 
-    public BoardLayout(int pxsize, HandlerManager eventbus) {
-        this.size = pxsize;
-        this.eventbus = eventbus;
-        initWidget(uiBinder.createAndBindUi(this));
+	@Inject
+    public BoardLayout() {
+        panel = uiBinder.createAndBindUi(this);
     }
 
     public void setHelp(String name) {
@@ -84,22 +80,28 @@ public class BoardLayout extends Composite implements Display {
         return whand;
     }
 
-    @Override
-    public HandlerRegistration addValueChangeHandler(ValueChangeHandler<List<String>> handler) {
-        return null;
-    }
+	@Override
+	public Widget asWidget() {
+		return panel;
+	}
 
-    @Override
-    public List<String> getValue() {
-        return null;
-    }
+//    @Override
+//    public HandlerRegistration addValueChangeHandler(ValueChangeHandler<List<String>> handler) {
+//        return null;
+//    }
+//
+//    @Override
+//    public List<String> getValue() {
+//        return null;
+//    }
+//
+//    @Override
+//    public void setValue(List<String> value) {
+//    }
+//
+//    @Override
+//    public void setValue(List<String> value, boolean fireEvents) {
+//    }
 
-    @Override
-    public void setValue(List<String> value) {
-    }
-
-    @Override
-    public void setValue(List<String> value, boolean fireEvents) {
-    }
 
 }
