@@ -1,4 +1,4 @@
-package de.db12.game.chessit.client.model;
+package de.db12.game.chessit.client.online.model;
 
 public interface Place {
 

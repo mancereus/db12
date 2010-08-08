@@ -1,4 +1,4 @@
-package de.db12.game.chessit.client;
+package de.db12.game.chessit.client.online;
 
 import com.google.gwt.core.client.GWT;
 import com.google.gwt.resources.client.ClientBundle;

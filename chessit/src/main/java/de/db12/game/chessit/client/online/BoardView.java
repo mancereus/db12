@@ -1,7 +1,6 @@
-package de.db12.game.chessit.client;
+package de.db12.game.chessit.client.online;
 
 import com.google.gwt.core.client.GWT;
-import com.google.gwt.event.shared.HandlerManager;
 import com.google.gwt.uibinder.client.UiBinder;
 import com.google.gwt.uibinder.client.UiField;
 import com.google.gwt.user.client.ui.AbsolutePanel;
@@ -12,10 +11,10 @@ import com.google.gwt.user.client.ui.Widget;
 import com.google.inject.Inject;
 import com.gwtplatform.mvp.client.ViewImpl;
 
-import de.db12.game.chessit.client.BoardPresenter.MyView;
+import de.db12.game.chessit.client.online.BoardPresenter.MyView;
 
-public class BoardLayout extends ViewImpl implements MyView {
-    interface MyUiBinder extends UiBinder<DockLayoutPanel, BoardLayout> {
+public class BoardView extends ViewImpl implements MyView {
+    interface MyUiBinder extends UiBinder<DockLayoutPanel, BoardView> {
     }
 
     private static MyUiBinder uiBinder = GWT.create(MyUiBinder.class);
@@ -34,10 +33,10 @@ public class BoardLayout extends ViewImpl implements MyView {
     @UiField
     AbsolutePanel table;
 
-	private DockLayoutPanel panel;
+    private final DockLayoutPanel panel;
 
-	@Inject
-    public BoardLayout() {
+    @Inject
+    public BoardView() {
         panel = uiBinder.createAndBindUi(this);
     }
 
@@ -80,28 +79,8 @@ public class BoardLayout extends ViewImpl implements MyView {
         return whand;
     }
 
-	@Override
-	public Widget asWidget() {
-		return panel;
-	}
-
-//    @Override
-//    public HandlerRegistration addValueChangeHandler(ValueChangeHandler<List<String>> handler) {
-//        return null;
-//    }
-//
-//    @Override
-//    public List<String> getValue() {
-//        return null;
-//    }
-//
-//    @Override
-//    public void setValue(List<String> value) {
-//    }
-//
-//    @Override
-//    public void setValue(List<String> value, boolean fireEvents) {
-//    }
-
-
+    @Override
+    public Widget asWidget() {
+        return panel;
+    }
 }

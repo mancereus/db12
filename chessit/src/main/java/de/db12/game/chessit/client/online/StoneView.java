@@ -1,11 +1,11 @@
-package de.db12.game.chessit.client;
+package de.db12.game.chessit.client.online;
 
 import com.google.gwt.core.client.GWT;
 import com.google.gwt.resources.client.DataResource;
 import com.google.gwt.user.client.ui.Image;
 
-import de.db12.game.chessit.client.model.Place;
-import de.db12.game.chessit.client.model.Stone;
+import de.db12.game.chessit.client.online.model.Place;
+import de.db12.game.chessit.client.online.model.Stone;
 
 public class StoneView extends Image {
 
@@ -16,7 +16,7 @@ public class StoneView extends Image {
         super(getDataResource(place.getStone()).getUrl());
         setWidth(pxsize + "px");
         setHeight(pxsize + "px");
-        setStyleName(res.style().border());
+        addStyleName(res.style().border());
         this.field = place;
     }
 

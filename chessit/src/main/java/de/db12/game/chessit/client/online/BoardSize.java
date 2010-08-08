@@ -1,4 +1,4 @@
-package de.db12.game.chessit.client;
+package de.db12.game.chessit.client.online;
 
 public class BoardSize {
 	private int minx = Integer.MAX_VALUE;

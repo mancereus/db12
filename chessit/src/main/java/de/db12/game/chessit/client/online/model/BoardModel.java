@@ -1,13 +1,13 @@
-package de.db12.game.chessit.client.model;
+package de.db12.game.chessit.client.online.model;
 
 import java.util.ArrayList;
 import java.util.List;
 
 import com.google.gwt.user.client.Random;
 
-import de.db12.game.chessit.client.BoardPresenter.Player;
-import de.db12.game.chessit.client.BoardPresenter.State;
-import de.db12.game.chessit.client.model.Stone.Type;
+import de.db12.game.chessit.client.online.BoardPresenter.Player;
+import de.db12.game.chessit.client.online.BoardPresenter.State;
+import de.db12.game.chessit.client.online.model.Stone.Type;
 
 public class BoardModel {
 

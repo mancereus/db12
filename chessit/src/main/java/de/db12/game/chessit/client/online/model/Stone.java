@@ -1,6 +1,6 @@
-package de.db12.game.chessit.client.model;
+package de.db12.game.chessit.client.online.model;
 
-import de.db12.game.chessit.client.BoardPresenter.Player;
+import de.db12.game.chessit.client.online.BoardPresenter.Player;
 
 public class Stone {
     public enum Type {

@@ -1,4 +1,4 @@
-package de.db12.game.chessit.client;
+package de.db12.game.chessit.client.online;
 
 import com.allen_sauer.gwt.dnd.client.DragContext;
 import com.allen_sauer.gwt.dnd.client.drop.GridConstrainedDropController;
