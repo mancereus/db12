@@ -28,6 +28,6 @@ public class MyModule extends AbstractPresenterModule {
 
         // Presenters
         bindPresenter(BoardPresenter.class, BoardPresenter.MyView.class, BoardView.class, BoardPresenter.MyProxy.class);
-        bindPresenter(MainPresenter.class, MainPresenter.MyView.class, MainView.class, MainPresenter.MyProxy.class);
+//        bindPresenter(MainPresenter.class, MainPresenter.MyView.class, MainView.class, MainPresenter.MyProxy.class);
     }
 }
