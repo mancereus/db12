@@ -5,27 +5,34 @@
 	xmlns:g='urn:import:com.google.gwt.user.client.ui'>
 
 	<ui:style>
+		.topright {
+			width: 200px;
+		}
 		.title {
-			background-color: Skyblue;
-			color: black;
+			background-color: black;
+			color: white;
+			width: 1000px;
 			font-size: 16pt;
 			text-align: center;
 			vertical-align: middle;
 		}
 		
 		.hand {
-			background-color: gray;
-			color: black;
+			background-color: black;
+			color: white;
 			font-size: 16pt;
 			text-align: center;
 			vertical-align: middle;
 		}
 	</ui:style>
 	<g:DockLayoutPanel unit='EM'>
-		<g:north size='2'>
-			<g:Label styleName='{style.title}'>ChessIt</g:Label>
+		<g:north size='4'>
+			<g:HorizontalPanel>
+				<g:Label styleName='{style.title}'>Schachen - the essence of chess</g:Label>
+				<g:Label styleName="{style.topright}"></g:Label>
+			</g:HorizontalPanel>
 		</g:north>
-		<g:west size='20'>
+		<g:east size='20'>
 			<g:DockLayoutPanel unit='EM'>
 				<g:north size='10'>
 					<g:FlowPanel styleName='{style.hand}' ui:field="whand"></g:FlowPanel>
@@ -43,7 +50,7 @@
 					<g:FlowPanel styleName='{style.hand}'  ui:field="bdrop"></g:FlowPanel>
 				</g:south>
 			</g:DockLayoutPanel>
-		</g:west>
+		</g:east>
 		<g:center>
 			<g:AbsolutePanel ui:field="table">
 			</g:AbsolutePanel>
