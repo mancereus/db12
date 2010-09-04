@@ -3,7 +3,6 @@ package de.db12.game.chessit.client;
 import com.allen_sauer.gwt.dnd.client.PickupDragController;
 import com.google.gwt.event.dom.client.ClickEvent;
 import com.google.gwt.event.dom.client.ClickHandler;
-import com.google.gwt.event.shared.HandlerManager;
 import com.google.gwt.user.client.ui.AbsolutePanel;
 import com.google.gwt.user.client.ui.Button;
 import com.google.gwt.user.client.ui.HasWidgets;
@@ -25,8 +24,8 @@ import de.db12.game.chessit.client.model.InPlace;
 import de.db12.game.chessit.client.model.Place;
 import de.db12.game.chessit.client.model.Stone;
 
-public class BoardPresenter extends 
-PresenterImpl<BoardPresenter.MyView, BoardPresenter.MyProxy> implements MoveStoneEventHandler {
+public class BoardPresenter extends PresenterImpl<BoardPresenter.MyView, BoardPresenter.MyProxy> implements
+        MoveStoneEventHandler {
     public enum Player {
         white, black, none
     }
@@ -49,49 +48,45 @@ PresenterImpl<BoardPresenter.MyView, BoardPresenter.MyProxy> implements MoveSton
         }
     }
 
-	  public interface MyView extends View {
-	        HasWidgets getWhiteHand();
+    public interface MyView extends View {
+        HasWidgets getWhiteHand();
 
-	        HasWidgets getBlackHand();
+        HasWidgets getBlackHand();
 
-	        HasWidgets getWhiteDrop();
+        HasWidgets getWhiteDrop();
 
-	        HasWidgets getBlackDrop();
+        HasWidgets getBlackDrop();
 
-	        HasWidgets getHelp();
+        HasWidgets getHelp();
 
-	        AbsolutePanel getBoard();
+        AbsolutePanel getBoard();
 
-	        AbsolutePanel getTable();
-	  }
+        AbsolutePanel getTable();
+    }
 
-	  @ProxyCodeSplit
-	  @NameToken(nameToken)
-	  public interface MyProxy extends ProxyPlace<BoardPresenter> {}
+    @ProxyCodeSplit
+    @NameToken(nameToken)
+    public interface MyProxy extends ProxyPlace<BoardPresenter> {
+    }
 
-
-	public static final String nameToken = "!main";
-	  
+    public static final String nameToken = "!main";
 
     BoardModel model;
-    BoardLayout view;
-    private HandlerManager eventbus;
     PickupDragController dragController = null;
 
-	  @Inject
-	  public BoardPresenter(EventBus eventBus, MyView view, MyProxy proxy) {
-	    super(eventBus, view, proxy);
+    @Inject
+    public BoardPresenter(EventBus eventBus, MyView view, MyProxy proxy) {
+        super(eventBus, view, proxy);
         model = new BoardModel(30);
-        view = new BoardLayout();
         dragController = new PickupDragController(view.getBoard(), false);
         refreshView();
-        eventbus.addHandler(MoveStoneEvent.getType(), this);
-	  }
+        eventBus.addHandler(MoveStoneEvent.getType(), this);
+    }
 
-	  @Override
-	  protected void revealInParent() {
-	    RevealRootContentEvent.fire( eventBus, this );
-	  }
+    @Override
+    protected void revealInParent() {
+        RevealRootContentEvent.fire(eventBus, this);
+    }
 
     private void refreshView() {
         clearBoard();
@@ -139,7 +134,7 @@ PresenterImpl<BoardPresenter.MyView, BoardPresenter.MyProxy> implements MoveSton
             int xpos = field.getX() - model.getBoard().getXOffset();
             int ypos = field.getY() - model.getBoard().getYOffset();
             view.getBoard().add(stone, 20 + pxsize * xpos, pxsize * ypos);
-            dragController.registerDropController(new FieldDropController(eventbus, stone));
+            dragController.registerDropController(new FieldDropController(eventBus, stone));
             if (field.getStone().getPlayer() == Player.white && model.getState() == State.whitedraw)
                 dragController.makeDraggable(stone);
             if (field.getStone().getPlayer() == Player.black && model.getState() == State.blackdraw)
