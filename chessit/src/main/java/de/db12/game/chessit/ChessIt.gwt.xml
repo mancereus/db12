@@ -2,9 +2,9 @@
 <module rename-to='chessit'>
 	<inherits name='com.google.gwt.user.User' />
 
-	<!-- <inherits name='com.google.gwt.user.theme.standard.Standard' /> -->
+	 <inherits name='com.google.gwt.user.theme.standard.Standard' /> 
 	<!-- <inherits name='com.google.gwt.user.theme.chrome.Chrome'/> -->
-	<inherits name='com.google.gwt.user.theme.dark.Dark' />
+<!--	<inherits name='com.google.gwt.user.theme.dark.Dark' />-->
 
 	<!-- For development a default of `DEBUG` is recommended -->
 	<inherits name="com.allen_sauer.gwt.log.gwt-log-OFF" />

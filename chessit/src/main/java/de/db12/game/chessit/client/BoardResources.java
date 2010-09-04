@@ -47,10 +47,10 @@ public interface BoardResources extends ClientBundle {
     @Source("images/laeufer_white.png")
     DataResource wbishop();
 
-    @Source("images/springer_black.png")
+    @Source("images/pferd_black.png")
     DataResource bknight();
 
-    @Source("images/springer_white.png")
+    @Source("images/pferd_white.png")
     DataResource wknight();
 
     @Source("images/turm_black.png")
