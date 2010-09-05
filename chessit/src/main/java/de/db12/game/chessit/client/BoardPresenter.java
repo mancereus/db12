@@ -99,9 +99,19 @@ public class BoardPresenter extends PresenterImpl<BoardPresenter.MyView, BoardPr
         // int height = boardview.getOffsetHeight();
         // int width = boardview.getOffsetWidth();
         // int pxsize = Math.max(Math.min(height, width) / 8, 30);
-        refreshHands();
         refreshBoard();
+        refreshSidePanel();
+
+    }
+
+    private void refreshSidePanel() {
+        refreshHands();
+        refreshHelp();
         refreshDrop();
+    }
+
+    private void refreshHelp() {
+        // TODO Auto-generated method stub
 
     }
 
@@ -115,6 +125,25 @@ public class BoardPresenter extends PresenterImpl<BoardPresenter.MyView, BoardPr
         for (int i = 0; i < model.getbDrop().size(); i++) {
             StoneView stoneview = new StoneView(new InPlace(i, model.getbDrop().get(i)), 50);
             view.getBlackDrop().add(stoneview);
+        }
+    }
+
+    private void refreshHands() {
+        view.getWhiteHand().clear();
+        view.getBlackHand().clear();
+        view.getWhiteHand().add(new Label("Spieler A"));
+        for (int i = 0; i < Math.min(model.getWHand().size(), 3); i++) {
+            StoneView stoneview = new StoneView(new InPlace(i, model.getWHand().get(i)), 50);
+            view.getWhiteHand().add(stoneview);
+            if (model.getState() == State.whiteset)
+                dragController.makeDraggable(stoneview);
+        }
+        view.getWhiteHand().add(new Label("Spieler B"));
+        for (int i = 0; i < Math.min(model.getBHand().size(), 3); i++) {
+            StoneView stoneview = new StoneView(new InPlace(i, model.getBHand().get(i)), 50);
+            view.getBlackHand().add(stoneview);
+            if (model.getState() == State.blackset)
+                dragController.makeDraggable(stoneview);
         }
     }
 
@@ -139,25 +168,6 @@ public class BoardPresenter extends PresenterImpl<BoardPresenter.MyView, BoardPr
                 dragController.makeDraggable(stone);
             if (field.getStone().getPlayer() == Player.black && model.getState() == State.blackdraw)
                 dragController.makeDraggable(stone);
-        }
-    }
-
-    private void refreshHands() {
-        view.getWhiteHand().clear();
-        view.getWhiteHand().add(new Label("White"));
-        for (int i = 0; i < Math.min(model.getWHand().size(), 3); i++) {
-            StoneView stoneview = new StoneView(new InPlace(i, model.getWHand().get(i)), 50);
-            view.getWhiteHand().add(stoneview);
-            if (model.getState() == State.whiteset)
-                dragController.makeDraggable(stoneview);
-        }
-        view.getBlackHand().clear();
-        view.getWhiteHand().add(new Label("Black"));
-        for (int i = 0; i < Math.min(model.getBHand().size(), 3); i++) {
-            StoneView stoneview = new StoneView(new InPlace(i, model.getBHand().get(i)), 50);
-            view.getBlackHand().add(stoneview);
-            if (model.getState() == State.blackset)
-                dragController.makeDraggable(stoneview);
         }
     }
 

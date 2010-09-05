@@ -69,7 +69,7 @@
         <dc:format>image/svg+xml</dc:format>
         <dc:type
            rdf:resource="http://purl.org/dc/dcmitype/StillImage" />
-        <dc:title />
+        <dc:title></dc:title>
       </cc:Work>
     </rdf:RDF>
   </metadata>
@@ -85,6 +85,9 @@
        height="199.50514"
        x="0"
        y="0.49487239"
-       transform="translate(0,852.36218)" />
+       transform="translate(0,852.36218)"
+       inkscape:export-filename="H:\dev\db12\chessit\src\main\resources\images\empty.png"
+       inkscape:export-xdpi="90"
+       inkscape:export-ydpi="90" />
   </g>
 </svg>

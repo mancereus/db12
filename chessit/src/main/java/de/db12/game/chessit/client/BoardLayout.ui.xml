@@ -28,21 +28,21 @@
 	<g:DockLayoutPanel unit='EM'>
 		<g:north size='4'>
 			<g:HorizontalPanel>
-				<g:Label styleName='{style.title}'>Schachen - the essence of chess</g:Label>
+				<g:Label styleName='{style.title}'>Schachen - die Essenz des Schachspiels</g:Label>
 				<g:Label styleName="{style.topright}"></g:Label>
 			</g:HorizontalPanel>
 		</g:north>
 		<g:east size='20'>
-			<g:DockLayoutPanel unit='EM'>
+			<g:DockLayoutPanel ui:field="sidepanel" unit='EM'>
 				<g:north size='10'>
 					<g:FlowPanel styleName='{style.hand}' ui:field="whand"></g:FlowPanel>
 				</g:north>
 				<g:north size='10'>
 					<g:FlowPanel styleName='{style.hand}' ui:field="bhand"></g:FlowPanel>
 				</g:north>
-				<g:north size='20'>
+				<g:center>
 					<g:FlowPanel styleName='{style.hand}'  ui:field="help"></g:FlowPanel>
-				</g:north>
+				</g:center>
 				<g:south size='10'>
 					<g:FlowPanel styleName='{style.hand}'  ui:field="wdrop"></g:FlowPanel>
 				</g:south>

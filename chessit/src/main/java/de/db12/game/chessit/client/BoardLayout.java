@@ -32,6 +32,8 @@ public class BoardLayout extends ViewImpl implements MyView {
     HasWidgets bdrop;
     @UiField
     AbsolutePanel table;
+    @UiField
+    DockLayoutPanel sidepanel;
 
     private final DockLayoutPanel panel;
 
